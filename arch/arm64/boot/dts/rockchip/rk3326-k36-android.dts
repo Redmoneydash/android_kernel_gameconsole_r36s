@@ -34,6 +34,126 @@
 	};
 };
 
+/*
+ * K36 button GPIOs are on gpio3/gpio2, not gpio1 as on R36S.
+ * Pinctrl: update btn_pins to K36's actual button pins.
+ */
+&btn_pins {
+	rockchip,pins =
+		<3 RK_PB2 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PB3 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PB4 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC0 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC1 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC2 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC3 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC4 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC5 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC6 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PC7 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PD0 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PD1 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PD2 RK_FUNC_GPIO &pcfg_pull_up>,
+		<3 RK_PD3 RK_FUNC_GPIO &pcfg_pull_up>,
+		<2 RK_PB5 RK_FUNC_GPIO &pcfg_pull_up>,
+		<2 RK_PB6 RK_FUNC_GPIO &pcfg_pull_up>;
+};
+
+/* K36 analog mux is on gpio2, different select pins and channel order */
+&joypad {
+	amux-a-gpios = <&gpio2 RK_PC0 GPIO_ACTIVE_LOW>;
+	amux-b-gpios = <&gpio2 RK_PB7 GPIO_ACTIVE_LOW>;
+	amux-en-gpios = <&gpio2 RK_PB4 GPIO_ACTIVE_LOW>;
+
+	sw1 {
+		gpios = <&gpio3 RK_PC6 GPIO_ACTIVE_LOW>;
+		label = "GPIO DPAD-UP";
+		linux,code = <103>;
+	};
+	sw2 {
+		gpios = <&gpio3 RK_PC7 GPIO_ACTIVE_LOW>;
+		label = "GPIO DPAD-DOWN";
+		linux,code = <108>;
+	};
+	sw3 {
+		gpios = <&gpio3 RK_PC4 GPIO_ACTIVE_LOW>;
+		label = "GPIO DPAD-LEFT";
+		linux,code = <105>;
+	};
+	sw4 {
+		gpios = <&gpio3 RK_PC5 GPIO_ACTIVE_LOW>;
+		label = "GPIO DPAD-RIGHT";
+		linux,code = <106>;
+	};
+	sw5 {
+		gpios = <&gpio3 RK_PC0 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN-A";
+		linux,code = <304>;
+	};
+	sw6 {
+		gpios = <&gpio3 RK_PC1 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN-B";
+		linux,code = <305>;
+	};
+	sw7 {
+		gpios = <&gpio3 RK_PC3 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN-Y";
+		linux,code = <308>;
+	};
+	sw8 {
+		gpios = <&gpio3 RK_PC2 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN-X";
+		linux,code = <307>;
+	};
+	sw11 {
+		gpios = <&gpio2 RK_PB6 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_THUMBR";
+		linux,code = <0x2c3>;
+	};
+	sw12 {
+		gpios = <&gpio2 RK_PB5 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_THUMBL";
+		linux,code = <0x2c2>;
+	};
+	sw13 {
+		gpios = <&gpio3 RK_PB2 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_F";
+		linux,code = <172>;
+	};
+	sw15 {
+		gpios = <&gpio3 RK_PB5 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TL";
+		linux,code = <310>;
+	};
+	sw16 {
+		gpios = <&gpio3 RK_PB3 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR";
+		linux,code = <311>;
+	};
+	sw19 {
+		gpios = <&gpio3 RK_PD0 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_SELECT";
+		linux,code = <0x2c0>;
+	};
+	sw20 {
+		gpios = <&gpio3 RK_PB4 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TR2";
+		linux,code = <313>;
+	};
+	sw21 {
+		gpios = <&gpio3 RK_PB6 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_TL2";
+		linux,code = <312>;
+	};
+	sw22 {
+		gpios = <&gpio3 RK_PD1 GPIO_ACTIVE_LOW>;
+		label = "GPIO BTN_START";
+		linux,code = <0x2c1>;
+	};
+};
+
 &dsi {
 	panel@0 {
 		compatible = "simple-panel-dsi";
