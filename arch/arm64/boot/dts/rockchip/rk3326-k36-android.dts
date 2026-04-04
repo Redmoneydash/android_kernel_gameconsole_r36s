@@ -7,6 +7,11 @@
 /dts-v1/;
 #include "rk3326-r36s-android.dtsi"
 
+/* K36 speaker amp enable on gpio3 PA7 */
+&rk817_codec {
+	spk-ctl-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
+};
+
 /* K36 uses ADC for volume buttons, not GPIO */
 &gpio_keys {
 	status = "disabled";
