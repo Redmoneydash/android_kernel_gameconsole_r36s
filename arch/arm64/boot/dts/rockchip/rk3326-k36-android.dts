@@ -192,11 +192,11 @@
 		/* K36: GPIO0_B5 enable (active high) */
 		enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
 
-		prepare-delay-ms = <20>;
-		reset-delay-ms = <20>;
+		prepare-delay-ms = <50>;
+		reset-delay-ms = <150>;
 		init-delay-ms = <20>;
-		enable-delay-ms = <120>;
-		disable-delay-ms = <20>;
+		enable-delay-ms = <200>;
+		disable-delay-ms = <50>;
 		unprepare-delay-ms = <20>;
 
 		width-mm = <153>;
