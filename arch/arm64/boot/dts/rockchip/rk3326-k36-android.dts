@@ -7,6 +7,33 @@
 /dts-v1/;
 #include "rk3326-r36s-android.dtsi"
 
+/* K36 uses ADC for volume buttons, not GPIO */
+&gpio_keys {
+	status = "disabled";
+};
+
+/ {
+	adc_keys: adc-keys {
+		compatible = "adc-keys";
+		io-channels = <&saradc 2>;
+		io-channel-names = "buttons";
+		poll-interval = <100>;
+		keyup-threshold-microvolt = <1800000>;
+
+		vol-up-key {
+			label = "volume up";
+			linux,code = <KEY_VOLUMEUP>;
+			press-threshold-microvolt = <15000>;
+		};
+
+		vol-down-key {
+			label = "volume down";
+			linux,code = <KEY_VOLUMEDOWN>;
+			press-threshold-microvolt = <295000>;
+		};
+	};
+};
+
 &dsi {
 	panel@0 {
 		compatible = "simple-panel-dsi";
