@@ -73,7 +73,7 @@
 		display-timings {
 			native-mode = <&timing0>;
 
-			timing0: timing0 {
+			timing0 {
 				clock-frequency = <30000000>;
 				hactive = <640>;
 				vactive = <480>;
@@ -89,7 +89,7 @@
 				pixelclk-active = <0>;
 			};
 
-			timing1: timing1 {
+			timing1 {
 				clock-frequency = <25500000>;
 				hactive = <640>;
 				vactive = <480>;
