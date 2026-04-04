@@ -18,6 +18,13 @@
 };
 
 / {
+	reserved-memory {
+		drm_logo: drm-logo@00000000 {
+			compatible = "rockchip,drm-logo";
+			reg = <0x00 0x00 0x00 0x00>;
+		};
+	};
+
 	adc_keys: adc-keys {
 		compatible = "adc-keys";
 		io-channels = <&saradc 2>;
@@ -158,6 +165,18 @@
 		label = "GPIO BTN_START";
 		linux,code = <0x2c1>;
 	};
+};
+
+&display_subsystem {
+	logo-memory-region = <&drm_logo>;
+};
+
+&route_dsi {
+	logo,uboot = "logo.bmp";
+	logo,kernel = "logo_kernel.bmp";
+	logo,mode = "center";
+	charge_logo,mode = "center";
+	status = "okay";
 };
 
 &dsi {
