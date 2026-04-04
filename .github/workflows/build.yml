@@ -11,7 +11,7 @@ jobs:
 
     steps:
       - name: Checkout source
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 1
 
@@ -35,7 +35,7 @@ jobs:
           cp arch/arm64/boot/dts/rockchip/rk3326-r36s-android-panel*.dtb out/ 2>/dev/null || true
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: k36-android-kernel
           path: out/
