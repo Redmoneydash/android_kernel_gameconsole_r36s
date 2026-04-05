@@ -12,15 +12,11 @@
 	spk-ctl-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
 };
 
-/*
- * Keep vcc_lcd always on — prevents the panel power rail from being
- * cut during DPMS cycles. HX8394 needs >1ms cap discharge between
- * power-off and power-on to reset cleanly, but the regulator turns
- * back on within microseconds. With always-on, only the reset GPIO
- * (gpio3 PB7) resets the panel, which works reliably.
+/* vcc_lcd (LDO_REG8, 2.8V): panel VCC and IOVCC supply.
+ * regulator-boot-on ensures it is on during early init / U-Boot handoff.
+ * NOT always-on: allow DRM to power-cycle during DPMS for clean re-init.
  */
 &vcc_lcd {
-	regulator-always-on;
 	regulator-boot-on;
 };
 
@@ -208,6 +204,7 @@
 
 		backlight = <&backlight>;
 		power-supply = <&vcc_lcd>;
+		iovcc-supply = <&vcc_lcd>;
 
 		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
 		/* enable-gpios omitted: U-Boot drives PB5 HIGH, kernel leaves it alone */
@@ -281,21 +278,6 @@
 				pixelclk-active = <0>;
 			};
 
-			timing1 {
-				clock-frequency = <25500000>;
-				hactive = <640>;
-				vactive = <480>;
-				hfront-porch = <135>;
-				hsync-len = <40>;
-				hback-porch = <135>;
-				vfront-porch = <20>;
-				vsync-len = <6>;
-				vback-porch = <12>;
-				hsync-active = <0>;
-				vsync-active = <0>;
-				de-active = <0>;
-				pixelclk-active = <0>;
-			};
 		};
 	};
 };
