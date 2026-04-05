@@ -193,7 +193,7 @@
 		power-supply = <&vcc_lcd>;
 
 		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-		enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_LOW>;
+		/* enable-gpios omitted: U-Boot drives PB5 HIGH, kernel leaves it alone */
 
 		prepare-delay-ms = <20>;
 		reset-delay-ms = <200>;
