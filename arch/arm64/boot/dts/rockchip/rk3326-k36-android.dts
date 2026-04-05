@@ -13,10 +13,11 @@
 };
 
 /* vcc_lcd (LDO_REG8, 2.8V): panel VCC and IOVCC supply.
- * regulator-boot-on ensures it is on during early init / U-Boot handoff.
- * NOT always-on: allow DRM to power-cycle during DPMS for clean re-init.
+ * always-on: disabling LDO_REG8 causes PMIC to shut the device down —
+ * it powers more than just the panel. Reset via GPIO only (gpio3 PB7).
  */
 &vcc_lcd {
+	regulator-always-on;
 	regulator-boot-on;
 };
 
