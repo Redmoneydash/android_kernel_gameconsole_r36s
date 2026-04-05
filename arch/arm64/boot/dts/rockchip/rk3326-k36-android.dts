@@ -187,16 +187,11 @@
 		backlight = <&backlight>;
 		power-supply = <&vcc_lcd>;
 
-		/*
-		 * K36 reset is GPIO3_B7, enable is GPIO0_B5.
-		 * Do NOT override reset-gpios here — the R36S default (gpio3 PC0)
-		 * is not K36's reset pin so the panel is never actually reset,
-		 * allowing the U-Boot framebuffer to survive into the kernel.
-		 * The HX8394 init sequence below re-initialises the panel over DSI.
-		 */
+		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
+		enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
 
-		prepare-delay-ms = <0>;
-		reset-delay-ms = <0>;
+		prepare-delay-ms = <20>;
+		reset-delay-ms = <150>;
 		init-delay-ms = <20>;
 		enable-delay-ms = <120>;
 		disable-delay-ms = <20>;
