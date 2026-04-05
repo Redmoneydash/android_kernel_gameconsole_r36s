@@ -188,10 +188,10 @@
 		power-supply = <&vcc_lcd>;
 
 		reset-gpios = <&gpio3 RK_PB7 GPIO_ACTIVE_LOW>;
-		enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_HIGH>;
+		enable-gpios = <&gpio0 RK_PB5 GPIO_ACTIVE_LOW>;
 
 		prepare-delay-ms = <20>;
-		reset-delay-ms = <150>;
+		reset-delay-ms = <200>;
 		init-delay-ms = <20>;
 		enable-delay-ms = <120>;
 		disable-delay-ms = <20>;
