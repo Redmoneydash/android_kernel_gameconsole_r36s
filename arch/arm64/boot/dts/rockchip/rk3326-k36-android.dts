@@ -24,8 +24,13 @@
 	regulator-boot-on;
 };
 
-/* K36 USB OTG port — enable PHY for ADB/USB device mode */
+/* K36 USB interfacing port — force peripheral mode for ADB */
 &u2phy_otg {
+	status = "okay";
+};
+
+&usb20_otg {
+	dr_mode = "peripheral";
 	status = "okay";
 };
 
