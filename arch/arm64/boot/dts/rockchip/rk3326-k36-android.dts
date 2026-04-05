@@ -12,6 +12,18 @@
 	spk-ctl-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
 };
 
+/*
+ * Keep vcc_lcd always on — prevents the panel power rail from being
+ * cut during DPMS cycles. HX8394 needs >1ms cap discharge between
+ * power-off and power-on to reset cleanly, but the regulator turns
+ * back on within microseconds. With always-on, only the reset GPIO
+ * (gpio3 PB7) resets the panel, which works reliably.
+ */
+&vcc_lcd {
+	regulator-always-on;
+	regulator-boot-on;
+};
+
 /* K36 USB OTG port — enable PHY for ADB/USB device mode */
 &u2phy_otg {
 	status = "okay";
@@ -241,8 +253,8 @@
 		];
 
 		panel-exit-sequence = [
-			05 00 01 28
-			05 00 01 10
+			05 14 01 28
+			05 78 01 10
 		];
 
 		display-timings {
