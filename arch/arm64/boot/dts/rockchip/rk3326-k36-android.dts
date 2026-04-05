@@ -12,6 +12,11 @@
 	spk-ctl-gpios = <&gpio3 RK_PA7 GPIO_ACTIVE_HIGH>;
 };
 
+/* K36 USB OTG port — enable PHY for ADB/USB device mode */
+&u2phy_otg {
+	status = "okay";
+};
+
 /* K36 uses ADC for volume buttons, not GPIO */
 &gpio_keys {
 	status = "disabled";
